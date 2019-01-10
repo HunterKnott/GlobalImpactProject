@@ -11,7 +11,7 @@ import MapKit
 
 public class ImpactViewController: UIViewController
 {
-    @IBOutlet weak var MapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var ViewButton: UIButton!
     @IBOutlet weak var ViewImaage: UIImageView!
     
@@ -28,5 +28,14 @@ public class ImpactViewController: UIViewController
         mapView.animatedZoom(zoomRegion: impactRegion, duration: 2.5)
     }
     
+}
+
+extension MKMapView
+{
+    public func animatedZoom(zoomRegion: MKCoordinateRegion, duration: TimeInterval)
+    {
+        MKMapView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 10, options: UIView.AnimationOptions.curveEaseIn, animations:
+            {self.setRegion(zoomRegion, animated: true)}, completion: nil)
+    }
 }
 
