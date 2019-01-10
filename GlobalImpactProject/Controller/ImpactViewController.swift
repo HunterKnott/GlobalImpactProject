@@ -7,16 +7,26 @@
 //
 
 import UIKit
+import MapKit
 
-class ImpactViewController: UIViewController
+public class ImpactViewController: UIViewController
 {
-
-    override func viewDidLoad()
+    @IBOutlet weak var MapView: MKMapView!
+    @IBOutlet weak var ViewButton: UIButton!
+    @IBOutlet weak var ViewImaage: UIImageView!
+    
+    public override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-
+    
+    @IBAction func sender(_ sender: UIButton)
+    {
+        let impactLocation = CLLocationCoordinate2D(latitude: 51.1279, longitude: 1.3134)
+        let mapSpan = MKCoordinateSpan(latitudeDelta: 10.05, longitudeDelta: 10.05)
+        let impactRegion = MKCoordinateRegion(center: impactLocation, span: mapSpan)
+        mapView.animatedZoom(zoomRegion: impactRegion, duration: 2.5)
+    }
+    
 }
 
